@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('slug',255);
             $table->text('content')->nullable(true);
             $table->integer('cat_id')->unsigned();
-            $table->foreign('cat_id')->references('id')->on('categories');
+            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

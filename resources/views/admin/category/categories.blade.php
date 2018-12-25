@@ -29,12 +29,12 @@
                             <td>{{$category->updated_at}}</td>
                             <td>
                                 <div class="table-data-feature">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <a href="{{route('category.edit', ['category'=>$category])}}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
-                                    </button>
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                    </a>
+                                    <a href="#" class="item btn-delete" data-toggle="tooltip " data-placement="top" title="" data-original-title="Delete" data-url="{{route('category.destroy',['category'=> $category])}}">
                                         <i class="zmdi zmdi-delete"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </td>
                     </tr>
@@ -46,4 +46,31 @@
             <!-- END DATA TABLE -->
         </div>
     </div>
+    <script>
+        window.onload = function() {
+           $('.btn-delete').on('click',function (event) {
+               event.preventDefault();
+               var url = $(this).data('url');
+               var row = $(this).closest('tr');
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+
+               $.ajax({
+                   url: url,
+                   method: 'DELETE',
+                   success: function () {
+                       row.css('display', 'none');
+                       
+                   },
+                   error: function (data) {
+                       console.log(data);
+
+                   }
+               });
+           })
+        }
+    </script>
 @endsection

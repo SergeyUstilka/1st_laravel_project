@@ -23,6 +23,7 @@ Route::get('/category/{category}/{product}','ShopController@product');
 Route::get('/admin/12', 'Admin\\IndexController@index');
 
 Route::resource('/admin/category','Admin\\CategoryController');
+Route::resource('/admin/product','Admin\\ProductController');
 
 //Route::get('/cart', 'CartController@index');
 //Route::post('/cart', 'CartController@add');
@@ -34,3 +35,7 @@ Route::resource('/admin/category','Admin\\CategoryController');
 //Route::resource('/admin/category', 'Admin\\CategoryController');
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
