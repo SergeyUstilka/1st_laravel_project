@@ -28,15 +28,18 @@
                         <td>{{$product->cat_id}}</td>
                         {{--<td>{{$product->created_at}}</td>--}}
                         {{--<td>{{$product->updated_at}}</td>--}}
-                        <td>
+                        <td style="vertical-align: middle; text-align: center">
                             <a href="{{route('product.edit', ['product'=>$product])}}" class="btn btn-primary">Редактировать</a>
                             <br>
-                            <a href="#" class="btn btn-danger btn-delete" data-url="{{route('product.destroy',['product'=>$product])}}}">Удалить</a>
+                            <a href="{{route('photo.index',['product'=>$product])}}" class="btn btn-info" style="display: inline-block; margin: 20px 0">Фотографии</a>
+                            <br>
+                            <a href="#" class="btn btn-danger btn-delete" data-url="{{route('product.destroy',['product'=>$product])}}">Удалить</a>
                         </td>
                     </tr>
                         @endforeach
                     </tbody>
                 </table>
+                {{$products->links()}}
             </div>
             <!-- END DATA TABLE -->
         </div>

@@ -24,7 +24,7 @@ Route::get('/admin/12', 'Admin\\IndexController@index');
 
 Route::resource('/admin/category','Admin\\CategoryController');
 Route::resource('/admin/product','Admin\\ProductController');
-
+Route::resource('/admin/{product}/photo', 'Admin\\PhotoController');
 //Route::get('/cart', 'CartController@index');
 //Route::post('/cart', 'CartController@add');
 //Route::post('/to_order','CartController');
