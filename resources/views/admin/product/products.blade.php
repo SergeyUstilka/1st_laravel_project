@@ -21,7 +21,7 @@
                     @foreach($products as $product)
                     <tr>
                         <td>{{$product->id}}</td>
-                        <td>img</td>
+                        <td><img src="{{asset('/storage/images/'.$product->img)}}" alt=""></td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->content}}</td>
@@ -31,7 +31,7 @@
                         <td style="vertical-align: middle; text-align: center">
                             <a href="{{route('product.edit', ['product'=>$product])}}" class="btn btn-primary">Редактировать</a>
                             <br>
-                            <a href="{{route('photo.index',['product'=>$product])}}" class="btn btn-info" style="display: inline-block; margin: 20px 0">Фотографии</a>
+                            <a href="{{route('photo.index',['product'=>$product])}}" class="btn btn-info" style="display: inline-block; margin: 20px 0">Фотографии ({{count($product->photos)}})</a>
                             <br>
                             <a href="#" class="btn btn-danger btn-delete" data-url="{{route('product.destroy',['product'=>$product])}}">Удалить</a>
                         </td>

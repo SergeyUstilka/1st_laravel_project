@@ -37,15 +37,19 @@ class PhotoController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        $files = $request->images;
-        foreach ($files as $file) {
-            $name = $file->getClientOriginalName();
-            $file->move(storage_path('app/public/images'),$name);
-            $photo = new Photo();
-            $photo->name = $name;
-            $photo->product_id = $product->id;
-            $photo->save();
+        if(isset($request->images)){
+            $files = $request->images;
+            foreach ($files as $file) {
+                $name = time().$file->getClientOriginalName();
+                $file->move(storage_path('app/public/images'),$name);
+                $photo = new Photo();
+                $photo->name = $name;
+                $photo->product_id = $product->id;
+                $photo->save();
+            }
         }
+
+        return back();
 
     }
 
@@ -78,10 +82,25 @@ class PhotoController extends Controller
      * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+
+    public function update(Request $request,Product $product)
     {
-        //
+        $photos = $product->photos;
+        foreach ($photos as $photo){
+            if($photo->id == intval($request->main_photo)){
+                $photo->main_photo = 1;
+                $product->img = $photo->name;
+                $product->save();
+
+            }else{
+                $photo->main_photo = 0;
+
+            }
+            $photo->save();
+        }
+        return back();
     }
+
 
     /**
      * Remove the specified resource from storage.
