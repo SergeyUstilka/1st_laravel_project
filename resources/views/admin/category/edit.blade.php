@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <strong>@if ($category->id) Редактировать @else Создать@endif </strong>категорию
                 </div>
-                <form action="@if ($category->id) {{route('category.update',compact('category'))}} @else {{route('category.store')}} @endif" method="post" class="">
+                <form action="@if ($category->id) {{route('admin.category.update',compact('category'))}} @else {{route('admin.category.store')}} @endif" method="post" class="">
                     @if ($category->id) <input name="_method" value="PUT" hidden > @endif
                     @csrf
                     <div class="card-body card-block">
@@ -23,7 +23,7 @@
                             <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> @if ($category->id) Обновить  @else Добавить @endif
                             </button>
-                            <a href="{{route('category.index')}}" class="btn btn-danger btn-sm">
+                            <a href="{{route('admin.category.index')}}" class="btn btn-danger btn-sm">
                                 <i class="fa fa-ban"></i> Отмена
                             </a>
                         </div>

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- DATA TABLE -->
-            <h2 class="title-5 m-b-35">Товары <a href="{{route('product.create')}}" class="btn btn-primary">Добавить</a></h2>
+            <h2 class="title-5 m-b-35">Товары <a href="{{route('admin.product.create')}}" class="btn btn-primary">Добавить</a></h2>
             <div class="table-responsive table-responsive-data2">
                 <table class="table table-borderless table-data3">
                     <thead>
@@ -29,11 +29,11 @@
                         {{--<td>{{$product->created_at}}</td>--}}
                         {{--<td>{{$product->updated_at}}</td>--}}
                         <td style="vertical-align: middle; text-align: center">
-                            <a href="{{route('product.edit', ['product'=>$product])}}" class="btn btn-primary">Редактировать</a>
+                            <a href="{{route('admin.product.edit', ['product'=>$product])}}" class="btn btn-primary">Редактировать</a>
                             <br>
-                            <a href="{{route('photo.index',['product'=>$product])}}" class="btn btn-info" style="display: inline-block; margin: 20px 0">Фотографии ({{count($product->photos)}})</a>
+                            <a href="{{route('admin.photo.index',['product'=>$product])}}" class="btn btn-info" style="display: inline-block; margin: 20px 0">Фотографии ({{count($product->photos)}})</a>
                             <br>
-                            <a href="#" class="btn btn-danger btn-delete" data-url="{{route('product.destroy',['product'=>$product])}}">Удалить</a>
+                            <a href="#" class="btn btn-danger btn-delete" data-url="{{route('admin.product.destroy',['product'=>$product])}}">Удалить</a>
                         </td>
                     </tr>
                         @endforeach

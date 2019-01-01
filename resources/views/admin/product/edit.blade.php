@@ -6,7 +6,7 @@
                 <div class="card-header">
                     <strong>@if ($product->id) Редактировать @else Создать@endif </strong>товар
                 </div>
-                <form action="@if ($product->id) {{route('product.update',compact('product'))}} @else {{route('product.store')}} @endif" method="post" class="">
+                <form action="@if ($product->id) {{route('admin.product.update',compact('product'))}} @else {{route('admin.product.store')}} @endif" method="post" class="">
                     @if ($product->id) <input name="_method" value="PUT" hidden > @endif
                     @csrf
                     <div class="card-body card-block">
@@ -39,7 +39,7 @@
                             <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> @if ($product->id) Обновить  @else Добавить @endif
                             </button>
-                            <a href="{{route('product.index')}}" class="btn btn-danger btn-sm">
+                            <a href="{{route('admin.product.index')}}" class="btn btn-danger btn-sm">
                                 <i class="fa fa-ban"></i> Отмена
                             </a>
                         </div>

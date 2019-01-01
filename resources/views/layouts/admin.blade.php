@@ -15,25 +15,25 @@
     <title>Dashboard</title>
 
     <!-- Fontfaces CSS-->
-    <link href="{{asset('admin/css/font-face.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/css/font-face.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
-    <link href="{{asset('admin/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
-    <link href="{{asset('admin/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/wow/animate.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/slick/slick.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('admin/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="{{asset('admin/css/theme.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/css/theme.css')}}" rel="stylesheet" media="all">
 
 </head>
 
@@ -45,7 +45,7 @@
             <div class="container-fluid">
                 <div class="header-mobile-inner">
                     <a class="logo" href="index.html">
-                        <img src="{{asset('admin/images/icon/logo.png')}}" alt="CoolAdmin" />
+                        <img src="{{asset('adminfront/images/icon/logo.png')}}" alt="Cooladminfront" />
                     </a>
                     <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -160,17 +160,17 @@
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
             <a href="#">
-                <img src="{{asset('admin/images/icon/logo.png')}}" alt="Cool Admin" />
+                <img src="{{asset('adminfront/images/icon/logo.png')}}" alt="Cool adminfront" />
             </a>
         </div>
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
                     <li>
-                        <a href="{{route('category.index')}}">Категории</a>
+                        <a href="{{route('admin.category.index')}}">Категории</a>
                     </li>
                     <li>
-                        <a href="{{route('product.index')}}">Продукты</a>
+                        <a href="{{route('admin.product.index')}}">Продукты</a>
                     </li>
                 </ul>
             </nav>
@@ -202,7 +202,7 @@
                                         </div>
                                         <div class="mess__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('admin/images/icon/avatar-06.jpg')}}" alt="Michelle Moreno" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-06.jpg')}}" alt="Michelle Moreno" />
                                             </div>
                                             <div class="content">
                                                 <h6>Michelle Moreno</h6>
@@ -212,7 +212,7 @@
                                         </div>
                                         <div class="mess__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('admin/images/icon/avatar-04.jpg')}}" alt="Diane Myers" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-04.jpg')}}" alt="Diane Myers" />
                                             </div>
                                             <div class="content">
                                                 <h6>Diane Myers</h6>
@@ -234,7 +234,7 @@
                                         </div>
                                         <div class="email__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('admin/images/icon/avatar-06.jpg')}}" alt="Cynthia Harvey" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-06.jpg')}}" alt="Cynthia Harvey" />
                                             </div>
                                             <div class="content">
                                                 <p>Meeting about new dashboard...</p>
@@ -243,7 +243,7 @@
                                         </div>
                                         <div class="email__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('admin/images/icon/avatar-05.jpg')}}" alt="Cynthia Harvey" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-05.jpg')}}" alt="Cynthia Harvey" />
                                             </div>
                                             <div class="content">
                                                 <p>Meeting about new dashboard...</p>
@@ -252,7 +252,7 @@
                                         </div>
                                         <div class="email__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('admin/images/icon/avatar-04.jpg')}}" alt="Cynthia Harvey" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-04.jpg')}}" alt="Cynthia Harvey" />
                                             </div>
                                             <div class="content">
                                                 <p>Meeting about new dashboard...</p>
@@ -307,7 +307,7 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <img src="{{asset('admin/images/icon/avatar-01.jpg')}}" alt="John Doe" />
+                                        <img src="{{asset('adminfront/images/icon/avatar-01.jpg')}}" alt="John Doe" />
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#">john doe</a>
@@ -316,7 +316,7 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="{{asset('admin/images/icon/avatar-01.jpg')}}" alt="John Doe" />
+                                                    <img src="{{asset('adminfront/images/icon/avatar-01.jpg')}}" alt="John Doe" />
                                                 </a>
                                             </div>
                                             <div class="content">
@@ -369,28 +369,28 @@
 </div>
 
 <!-- Jquery JS-->
-<script src="{{asset('admin/vendor/jquery-3.2.1.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/jquery-3.2.1.min.js')}}"></script>
 <!-- Bootstrap JS-->
-<script src="{{asset('admin/vendor/bootstrap-4.1/popper.min.js')}}"></script>
-<script src="{{asset('admin/vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/bootstrap-4.1/popper.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
 <!-- Vendor JS       -->
-<script src="{{asset('admin/vendor/slick/slick.min.js')}}">
+<script src="{{asset('adminfront/vendor/slick/slick.min.js')}}">
 </script>
-<script src="{{asset('admin/vendor/wow/wow.min.js')}}"></script>
-<script src="{{asset('admin/vendor/animsition/animsition.min.js')}}"></script>
-<script src="{{asset('admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
+<script src="{{asset('adminfront/vendor/wow/wow.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/animsition/animsition.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
 </script>
-<script src="{{asset('admin/vendor/counter-up/jquery.waypoints.min.js')}}"></script>
-<script src="{{asset('admin/vendor/counter-up/jquery.counterup.min.js')}}">
+<script src="{{asset('adminfront/vendor/counter-up/jquery.waypoints.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/counter-up/jquery.counterup.min.js')}}">
 </script>
-<script src="{{asset('admin/vendor/circle-progress/circle-progress.min.js')}}"></script>
-<script src="{{asset('admin/vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
-<script src="{{asset('admin/vendor/chartjs/Chart.bundle.min.js')}}"></script>
-<script src="{{asset('admin/vendor/select2/select2.min.js')}}">
+<script src="{{asset('adminfront/vendor/circle-progress/circle-progress.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+<script src="{{asset('adminfront/vendor/chartjs/Chart.bundle.min.js')}}"></script>
+<script src="{{asset('adminfront/vendor/select2/select2.min.js')}}">
 </script>
 
 <!-- Main JS-->
-<script src="{{asset('admin/js/main.js')}}"></script>
+<script src="{{asset('adminfront/js/main.js')}}"></script>
 
 </body>
 

@@ -44,7 +44,7 @@ class ProductController extends Controller
         $product = new Product($request->except('_token'));
         $product->slug = str_slug($product->name);
         $product->save();
-        return redirect(route('product.index'));
+        return redirect(route('admin.product.index'));
     }
 
     /**

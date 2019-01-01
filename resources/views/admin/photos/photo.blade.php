@@ -11,7 +11,7 @@
                         <h3 class="text-center title-2">Загрузка фотографий</h3>
                     </div>
                     <hr>
-                    <form action="{{route('photo.store',['product'=>$product])}}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                    <form action="{{route('admin.photo.store',['product'=>$product])}}" method="post" novalidate="novalidate" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="cc-upload" class="control-label mb-1">Выбирите фото</label>
@@ -28,7 +28,7 @@
         </div>
     </div>
     @if (isset($product->photos[0]))
-    <form method="post"  action="{{route('photo.update', ['product'=>$product,'photo'=>$product->photos[0]])}}">
+    <form method="post"  action="{{route('admin.photo.update', ['product'=>$product,'photo'=>$product->photos[0]])}}">
         <input name="_method" value="PUT" hidden >
         @csrf
     <div class="row">
@@ -50,7 +50,7 @@
                             </div>
                         @endif
                         <img src="{{asset('/storage/images/'.$photo->name)}}" alt="">
-                        <p style="padding: 20px 0 0 0; text-align: center"><a href="#" data-url="{{route('photo.destroy',
+                        <p style="padding: 20px 0 0 0; text-align: center"><a href="#" data-url="{{route('admin.photo.destroy',
                     ['product'=>$product, 'photo' => $photo])}}" class="btn btn-danger  btn-delete">Удалить</a></p>
 
 

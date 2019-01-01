@@ -156,6 +156,28 @@
         $(this).addClass('block2-btn-towishlist');
         $(this).removeClass('block2-btn-addwishlist');
         $(this).off('click');
+
+        var url = $(this).data('url');
+        var product_id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url:url,
+            method: "POST",
+            data:{id:product_id},
+            success: function (data) {
+                // var datas = $.parseJSON(data);
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+
+            }
+        });
     });
 
     /*[ +/- num product ]

@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- DATA TABLE -->
-            <h2 class="title-5 m-b-35">Категории <a href="{{route('category.create')}}" class="btn btn-primary">Добавить</a></h2>
+            <h2 class="title-5 m-b-35">Категории <a href="{{route('admin.category.create')}}" class="btn btn-primary">Добавить</a></h2>
             <div class="table-responsive table-responsive-data2">
                 <table class="table table-data2">
                     <thead>
@@ -29,10 +29,10 @@
                             <td>{{$category->updated_at}}</td>
                             <td>
                                 <div class="table-data-feature">
-                                    <a href="{{route('category.edit', ['category'=>$category])}}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                    <a href="{{route('admin.category.edit', ['category'=>$category])}}" class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
                                     </a>
-                                    <a href="#" class="item btn-delete" data-toggle="tooltip " data-placement="top" title="" data-original-title="Delete" data-url="{{route('category.destroy',['category'=> $category])}}">
+                                    <a href="#" class="item btn-delete" data-toggle="tooltip " data-placement="top" title="" data-original-title="Delete" data-url="{{route('admin.category.destroy',['category'=> $category])}}">
                                         <i class="zmdi zmdi-delete"></i>
                                     </a>
                                 </div>

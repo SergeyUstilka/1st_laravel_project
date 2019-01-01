@@ -41,7 +41,7 @@ class CategoryController extends Controller
         $category = new Category($request->except('_token'));
         $category->slug = str_slug($category->name);
         $category->save();
-        return redirect(route('category.index'));
+        return redirect(route('admin.category.index'));
     }
 
     /**

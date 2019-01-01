@@ -15,16 +15,20 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/category/{category}','ShopController@category');
-Route::get('/category/{category}/{product}','ShopController@product');
+Route::get('/category/{category?}','ShopController@category')->name('category');
+Route::get('/product/{category}/{product}.html','ShopController@product')->name('product');
+
+Route::any('/addtowishlist','CartController@addTowishList')->name('wishlist');
 
 
 
-Route::get('/admin/12', 'Admin\\IndexController@index');
+Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/', 'IndexController@index');
+    Route::resource('category','CategoryController');
+    Route::resource('product','ProductController');
+    Route::resource('{product}/photo', 'PhotoController');
+});
 
-Route::resource('/admin/category','Admin\\CategoryController');
-Route::resource('/admin/product','Admin\\ProductController');
-Route::resource('/admin/{product}/photo', 'Admin\\PhotoController');
 //Route::get('/cart', 'CartController@index');
 //Route::post('/cart', 'CartController@add');
 //Route::post('/to_order','CartController');
