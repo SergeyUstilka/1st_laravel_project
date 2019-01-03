@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('content');
+@section('content')
+@dump(session('cart'))
+
 {{--@dump($products);--}}
 <section class="bgwhite p-t-55 p-b-65">
     <div class="container">
@@ -63,12 +65,12 @@
                                 <img src="{{asset('/storage/images/'.$product->img)}}" alt="IMG-PRODUCT">
 
                                 <div class="block2-overlay trans-0-4">
-                                    <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4" data-url="{{route('wishlist')}}" data-id="{{$product->id}}">
+                                    <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4" data-url="{{route('addtowishlist')}}" data-id="{{$product->id}}">
                                         <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
                                         <i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
                                     </a>
 
-                                    <div class="block2-btn-addcart w-size1 trans-0-4">
+                                    <div class="block2-btn-addcart w-size1 trans-0-4" data-id="{{$product->id}}">
                                         <!-- Button -->
                                         <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
                                             Add to Cart

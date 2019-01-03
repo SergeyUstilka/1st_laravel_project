@@ -11,7 +11,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class ShopController extends Controller
 {
     public function category(Category $category, Request $request){
-        dump(session('wishlist'));
         $categories = Category::all();
 
         if(isset($category->id)){

@@ -149,6 +149,44 @@
     })
 
 
+    /*[ Block2 button add_to_cart ]
+    ===========================================================*/
+    $('.block2-btn-addcart').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+
+    $('.block2-btn-addwishlist').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to wishlist !", "success");
+        });
+    });
+
+    $('.block2-btn-addcart').on('click', function (event) {
+        event.preventDefault();
+        var id = $(this).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/addtocart',
+            method:'POST',
+            data:{id:id},
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+
+    })
+
     /*[ Block2 button wishlist ]
     ===========================================================*/
     $('.block2-btn-addwishlist').on('click', function(e){
@@ -179,6 +217,31 @@
             }
         });
     });
+
+    /*[ Delete from wishlist ]
+===========================================================*/
+
+    $('.delete-from-wish-list').on('click', function (event) {
+        event.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var id = $(this).data('id');
+        var row = $(this).closest('tr');
+        $.ajax({
+            url:'/delete_from_wish_list',
+            method:"GET",
+            data:{id:id},
+            success:function (data) {
+                row.css('display', 'none');
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        })
+    })
 
     /*[ +/- num product ]
     ===========================================================*/

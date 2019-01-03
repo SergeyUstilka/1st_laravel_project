@@ -18,7 +18,12 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/category/{category?}','ShopController@category')->name('category');
 Route::get('/product/{category}/{product}.html','ShopController@product')->name('product');
 
-Route::any('/addtowishlist','CartController@addTowishList')->name('wishlist');
+Route::get('/wish_list','WishlistController@wishlist')->name('wishlist');
+Route::any('/addtowishlist','WishlistController@addTowishList')->name('addtowishlist');
+Route::get('/delete_from_wish_list', 'WishlistController@deletewishlist')->name('deletefromwishlist');
+
+Route::get('/cart','CartController@index')->name('cart');
+Route::any('/addtocart','CartController@addtocart')->name('addtocart');
 
 
 
