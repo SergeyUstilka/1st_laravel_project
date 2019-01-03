@@ -86,7 +86,7 @@
                                 </a>
 
                                 <span class="block2-price m-text6 p-r-5">
-										Br {{$product->price}}
+										BYN {{$product->price}}
 									</span>
                             </div>
                         </div>

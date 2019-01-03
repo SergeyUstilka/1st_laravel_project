@@ -22,11 +22,11 @@
                                     <img src="{{asset('/storage/images/'.$product->img)}}" alt="IMG-PRODUCT">
                                 </div>
                             </td>
-                            <td class="column-2"><a href="{{route('product',['category'=>\App\Models\Category::query()->where('id',$product->cat_id)->get()[0]->slug, 'product'=>$product->slug])}}">{{$product->name}}</a></td>
+                            <td class="column-2"><a href="{{route('product',['category'=>\App\Models\Category::query()->where('id',$product->cat_id)->get()[0]->slug, 'product'=>$product->slug])}}" class="block2-name">{{$product->name}}</a></td>
                             <td class="column-3">{{$product->price}}</td>
 
                             <td class="column-5">
-                                <div class="block2-btn-addcart w-size1 trans-0-4" style="display: inline-block; position:relative;bottom:auto; left: auto">
+                                <div class="block2-btn-addcart w-size1 trans-0-4" data-id="{{$product->id}}" style="display: inline-block; position:relative;bottom:auto; left: auto">
                                     <!-- Button -->
                                     <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
                                         Add to Cart

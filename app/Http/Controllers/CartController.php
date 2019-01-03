@@ -9,7 +9,20 @@ class CartController extends Controller
 {
     public function index()
     {
-        return view('cart.cart');
+        $arr = session('cart');
+        foreach ($arr as $items){
+            foreach ($items as $key=>$item){
+                $ids[] = $key;
+                $count[$key]= $item;
+            }
+        }
+
+        if(isset($ids)){
+            $products = Product::query()->whereIn('id',$ids)->get();
+        }else{
+            $products = null;
+        }
+        return view('cart.cart',compact('products', 'count'));
     }
 
     public function addtocart(Request $request)
@@ -23,7 +36,6 @@ class CartController extends Controller
             $cartStart = session('cart');
             $cart2= [];
             $sovp=0;
-            print_r($cart2);
             if(count($cartStart) == 0){
                 $request->session()->push('cart', [$_POST['id'] => 1]);
                 echo 'первый товар';
@@ -57,31 +69,57 @@ class CartController extends Controller
                 }
             }
             print_r(session('cart'));
-
-//        $cartFinish = [];
-//            foreach ($cartStart as $key1 => $items) {
-//                foreach ($items as $key => $item) {
-//                    if ($key == $_POST['id']) {
-//                        $itemFinish = $item+1;
-//                        echo $itemFinish;
-//                        echo '______________';
-//                    }else{
-//                        $itemFinish = $item;
-//                    }
-//                    $cartFinish[$key1] = [$key => $itemFinish];
-//                }
-//            }
-//            $request->session()->pull('cart');
-//            print_r($cartStart);
-//            print_r($cartFinish);
-//            foreach ($cartFinish as $key => $items) {
-//                $request->session()->push('cart', $items[$key]);
-//            }
+    }
 
 
+    public function updatecart(Request $request){
+        print_r(session('cart'));
+        $cartStart = session('cart');
+        $cart2= [];
+        $sovp=0;
+        foreach ($cartStart as $number => $items) {
+            foreach ($items as $key => $item) {
+                if ($key == $_POST['id']) {
+                    $sovp++;
+                    $cart2[$number]=1;
+                }else{
+                    $cart2[$number]=0;
+                }
+            }
+        }
+        if(!$sovp){
+            $request->session()->push('cart', [$_POST['id'] => 1]);
+        }else{
+            $request->session()->pull('cart');
+            $request->session()->put('cart', []);
+            foreach ($cartStart as $number => $items){
+                foreach ( $items as $key=> $item) {
+                    if($cart2[$number]){
+                        $request->session()->push('cart', [$key =>$_POST['count']]);
+                    }
+                    else{
+                        $request->session()->push('cart', [$key =>$item]);
+                    }
+                }
+            }
+        }
+        print_r(session('cart'));
+    }
 
+    public function deletefromcart(Request $request){
+        print_r(session('cart'));
+        $cartStart = session('cart');
 
-
+        $request->session()->pull('cart');
+        $request->session()->put('cart', []);
+        foreach ($cartStart as $number => $items){
+            foreach ( $items as $key=> $item) {
+                if($key != $_POST['id']){
+                    $request->session()->push('cart', [$key =>$item]);
+                }
+            }
+        }
+        print_r(session('cart'));
 
     }
 }

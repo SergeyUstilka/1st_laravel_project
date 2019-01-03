@@ -185,6 +185,84 @@
             }
         });
 
+    });
+
+    /*[ Button  Change count of product in cart ]
+===========================================================*/
+    $('.cart-control-minus').on('click', function (event) {
+        event.preventDefault();
+        var count = 0;
+        var id = $(this).parent().children().eq(1).data('id');
+        if($(this).parent().children().eq(1).val() != 1){
+            count = $(this).parent().children().eq(1).val() - 1;
+        }else{
+            count = 1;
+        }
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/updatecart',
+            method:"POST",
+            data:{id:id,count:count},
+            success:function (data) {
+                console.log(data);
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+    });
+    $('.cart-control-plus').on('click',function (event) {
+        event.preventDefault();
+        var count = ($(this).parent().children().eq(1).val())*1+1;
+        var id = $(this).parent().children().eq(1).data('id');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/updatecart',
+            method:"POST",
+            data:{id:id,count:count},
+            success:function (data) {
+                console.log(data);
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+
+    })
+
+    /*[ Delete from cart ]
+    ===========================================================*/
+    $('.delete-from-cart').on('click', function (event) {
+        event.preventDefault();
+        var id= $(this).data('id');
+        var row = $(this).closest('tr');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/deletefromcart',
+            method:"POST",
+            data:{id:id},
+            success:function (data) {
+                console.log(data);
+                row.css('display', 'none');
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+
+
     })
 
     /*[ Block2 button wishlist ]

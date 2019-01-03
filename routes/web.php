@@ -24,6 +24,8 @@ Route::get('/delete_from_wish_list', 'WishlistController@deletewishlist')->name(
 
 Route::get('/cart','CartController@index')->name('cart');
 Route::any('/addtocart','CartController@addtocart')->name('addtocart');
+Route::any('/updatecart','CartController@updatecart');
+Route::any('/deletefromcart','CartController@deletefromcart');
 
 
 
