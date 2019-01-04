@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@dump(session('cart'))
 
-{{--@dump($products);--}}
 <section class="bgwhite p-t-55 p-b-65">
     <div class="container">
         <div class="row">

@@ -178,7 +178,7 @@
             method:'POST',
             data:{id:id},
             success: function (data) {
-                console.log(data);
+                topCartUpdate(data);
             },
             error: function (data) {
                 console.log(data);
@@ -193,6 +193,7 @@
         event.preventDefault();
         var count = 0;
         var id = $(this).parent().children().eq(1).data('id');
+        var price = $(this).parent().parent().parent().children().eq(2).html();
         if($(this).parent().children().eq(1).val() != 1){
             count = $(this).parent().children().eq(1).val() - 1;
         }else{
@@ -208,22 +209,40 @@
             method:"POST",
             data:{id:id,count:count},
             success:function (data) {
-                console.log(data);
+                topCartUpdate(data);
             },
             error:function (data) {
                 console.log(data);
             }
         });
+        $(this).parent().parent().parent().children().eq(4).html(count*price);
     });
     $('.cart-control-plus').on('click',function (event) {
         event.preventDefault();
         var count = ($(this).parent().children().eq(1).val())*1+1;
         var id = $(this).parent().children().eq(1).data('id');
+        var price = $(this).parent().parent().parent().children().eq(2).html();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        $.ajax({
+            url:'/updatecart',
+            method:"POST",
+            data:{id:id,count:count},
+            success:function (data) {
+                topCartUpdate(data);
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+
+        $(this).parent().parent().parent().children().eq(4).html(count*price);
+
+    })
+    function updateCart(id, count){
         $.ajax({
             url:'/updatecart',
             method:"POST",
@@ -235,8 +254,8 @@
                 console.log(data);
             }
         });
-
-    })
+        console.log($(this).parent().parent().children());
+    }
 
     /*[ Delete from cart ]
     ===========================================================*/
@@ -244,6 +263,7 @@
         event.preventDefault();
         var id= $(this).data('id');
         var row = $(this).closest('tr');
+        var cart;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -254,7 +274,7 @@
             method:"POST",
             data:{id:id},
             success:function (data) {
-                console.log(data);
+                topCartUpdate(data);
                 row.css('display', 'none');
             },
             error:function (data) {
@@ -264,6 +284,34 @@
 
 
     })
+
+    function topCartUpdate(data){
+        var products = JSON.parse(data)[0];
+        var counts = JSON.parse(data)[1];
+
+        var topCartContent = '';
+        var cartTotal = 0;
+        for(var i=0; i<products.length; i++){
+            var countId = products[i].id;
+            console.log();
+            topCartContent = topCartContent +
+                '<li class="header-cart-item">' +
+                '<div class="header-cart-item-img">' +
+                '<img src="http://lara.loc/storage/images/'+products[i].img+'" alt="IMG">' +
+                '</div>' +
+                '<div class="header-cart-item-txt">' +
+                '<a href="#" class="header-cart-item-name">'+products[i].name+'</a>' +
+                '<span class="header-cart-item-info">'+ counts[countId]+' x '+ products[i].price +'</span>' +
+                '</div></li>';
+            cartTotal+=counts[countId]*products[i].price;
+
+        }
+        if($('#cardCheck').length >0){
+            $('#cardCheck').html('CART TOTALS: '+cartTotal);
+        }
+        $('.header-cart-total').html('Total: '+cartTotal);
+        $('.header-cart-wrapitem').html(topCartContent);
+    }
 
     /*[ Block2 button wishlist ]
     ===========================================================*/

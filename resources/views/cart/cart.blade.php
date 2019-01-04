@@ -4,6 +4,7 @@
         <div class="container">
             <!-- Cart item -->
             @if(session('cart') != null)
+                <?php $total = 0 ?>
                 <h3>Товары в корзине</h3>
                 <div class="container-table-cart pos-relative">
                     <div class="wrap-table-shopping-cart bgwhite">
@@ -39,7 +40,8 @@
                                         </div>
                                     </td>
 
-                                    <td class="column-5">{{$product->price}}</td>
+                                    <td class="column-5 product-total" >{{$product->price*$count[$product->id]}}</td>
+                            <?php $total+=$product->price*$count[$product->id]?>
                                     <td class="column-6">
                                         <a href="#" class="btn btn-danger delete-from-cart" data-id = '{{$product->id}}'><i class="icon_trash_alt" aria-hidden="true"></i></a>
                                     </td>
@@ -47,6 +49,20 @@
                             @endforeach
                         </table>
 
+                    </div>
+                </div>
+                <div class="bo9 w-size18 p-l-40 p-r-40 p-t-30 p-b-38 m-t-30 m-r-0 m-l-auto p-lr-15-sm">
+                    <h5 class="m-text20 p-b-24" id="cardCheck">
+                        Cart Totals: {{$total }}
+                    </h5>
+
+
+
+                    <div class="size15 trans-0-4">
+                        <!-- Button -->
+                        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                            Proceed to Checkout
+                        </button>
                     </div>
                 </div>
             @else <h2>Вы пока ничего не положили в корзину</h2>

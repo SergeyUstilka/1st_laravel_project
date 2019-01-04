@@ -1,3 +1,21 @@
+<?php
+
+use App\Models\Product;
+
+if (session('cart')) {
+    $arr = session('cart');
+    foreach ($arr as $items) {
+        foreach ($items as $key => $item) {
+            $ids[] = $key;
+            $count[$key] = $item;
+        }
+    }
+
+    $cart_products = Product::query()->whereIn('id', $ids)->get();
+} else {
+    $cart_products = null;
+}
+?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -113,58 +131,32 @@
 
                 <div class="header-wrapicon2">
                     <img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">0</span>
+                    <span class="header-icons-noti">{{count($cart_products)}}</span>
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         <ul class="header-cart-wrapitem">
+                            @if($cart_products)
+                                @foreach ($cart_products as $product)
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
-                                    <img src="{{asset('images/item-cart-01.jpg')}}" alt="IMG">
+                                    <img src="{{asset('/storage/images/'.$product->img)}}" alt="IMG">
                                 </div>
 
                                 <div class="header-cart-item-txt">
                                     <a href="#" class="header-cart-item-name">
-                                        White Shirt With Pleat Detail Back
+                                        {{$product->name}}
                                     </a>
 
                                     <span class="header-cart-item-info">
-											1 x $19.00
+                                    {{$count[$product->id]}} x {{$product->price}}
 										</span>
                                 </div>
                             </li>
-
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="{{asset('images/item-cart-02.jpg')}}" alt="IMG">
-                                </div>
-
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        Converse All Star Hi Black Canvas
-                                    </a>
-
-                                    <span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-                                </div>
-                            </li>
-
-                            <li class="header-cart-item">
-                                <div class="header-cart-item-img">
-                                    <img src="{{asset('images/item-cart-03.jpg')}}" alt="IMG">
-                                </div>
-
-                                <div class="header-cart-item-txt">
-                                    <a href="#" class="header-cart-item-name">
-                                        Nixon Porter Leather Watch In Tan
-                                    </a>
-
-                                    <span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-                                </div>
-                            </li>
+                                @endforeach
+                            @else
+                            <h3>Корзина пуста</h3>
+                            @endif
                         </ul>
 
                         <div class="header-cart-total">
@@ -174,7 +166,7 @@
                         <div class="header-cart-buttons">
                             <div class="header-cart-wrapbtn">
                                 <!-- Button -->
-                                <a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                <a href="/cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                     View Cart
                                 </a>
                             </div>
