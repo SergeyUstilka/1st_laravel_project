@@ -61,7 +61,7 @@ class CartController extends Controller
                 foreach ($cartStart as $number => $items) {
                     foreach ($items as $key => $item) {
                         if ($cart2[$number]) {
-                            $request->session()->push('cart', [$key => ++$item]);
+                            $request->session()->push('cart', [$key => ($item + (1*$_POST['count']))]);
                         } else {
                             $request->session()->push('cart', [$key => $item]);
                         }
@@ -144,17 +144,22 @@ class CartController extends Controller
             }
         }
         // Делаем выборку товаров из сесии и отправляем на фронт
+
         $arr = session('cart');
-        foreach ($arr as $items) {
-            foreach ($items as $key => $item) {
-                $ids[] = $key;
-                $count[$key] = $item;
+        if($arr){
+            foreach ($arr as $items) {
+                foreach ($items as $key => $item) {
+                    $ids[] = $key;
+                    $count[$key] = $item;
+                }
             }
+            $products = Product::query()->whereIn('id', $ids)->get();
+            $res[]=$products;
+            $res[] = $count;
+            return json_encode($res);
+        }else{
+            return null;
         }
-        $products = Product::query()->whereIn('id', $ids)->get();
-        $res[]=$products;
-        $res[] = $count;
-        return json_encode($res);
 
     }
 }

@@ -131,13 +131,15 @@ if (session('cart')) {
 
                 <div class="header-wrapicon2">
                     <img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti">{{count($cart_products)}}</span>
+                    <span class="header-icons-noti count-cart">{{count($cart_products)}}</span>
 
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
+                        @if($cart_products)
+                            <?php $total = 0 ?>
                         <ul class="header-cart-wrapitem">
-                            @if($cart_products)
                                 @foreach ($cart_products as $product)
+                                <?php $total+=$product->price*$count[$product->id]?>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
                                     <img src="{{asset('/storage/images/'.$product->img)}}" alt="IMG">
@@ -154,13 +156,11 @@ if (session('cart')) {
                                 </div>
                             </li>
                                 @endforeach
-                            @else
-                            <h3>Корзина пуста</h3>
-                            @endif
+
                         </ul>
 
                         <div class="header-cart-total">
-                            Total: $75.00
+                            Total:{{$total}}
                         </div>
 
                         <div class="header-cart-buttons">
@@ -178,6 +178,9 @@ if (session('cart')) {
                                 </a>
                             </div>
                         </div>
+                        @else
+                            <h3>Корзина пуста</h3>
+                        @endif
                     </div>
                 </div>
             </div>
