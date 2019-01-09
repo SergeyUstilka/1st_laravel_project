@@ -12,6 +12,10 @@
 */
 
 
+Route::get('storage/images/{filename}', function ($filename)
+{
+    return Image::make(storage_path('public/images/' . $filename))->response();
+});
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -23,6 +27,7 @@ Route::any('/addtowishlist','WishlistController@addTowishList')->name('addtowish
 Route::get('/delete_from_wish_list', 'WishlistController@deletewishlist')->name('deletefromwishlist');
 
 Route::get('/cart','CartController@index')->name('cart');
+Route::get('/link','CartController@storlink');
 Route::any('/addtocart','CartController@addtocart')->name('addtocart');
 Route::any('/updatecart','CartController@updatecart');
 Route::any('/deletefromcart','CartController@deletefromcart');

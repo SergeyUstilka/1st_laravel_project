@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <section class="cart bgwhite p-t-70 p-b-100">
-        <div class="container">
+        <div class="container cart-box">
             <!-- Cart item -->
             @if(session('cart') != null)
                 <?php $total = 0 ?>
@@ -65,7 +65,7 @@
                         </button>
                     </div>
                 </div>
-            @else <h2>Вы пока ничего не положили в корзину</h2>
+            @else <h2>Ваша корзина пуста</h2>
             @endif
         </div>
     </section>

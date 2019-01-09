@@ -41,7 +41,7 @@ class CartController extends Controller
         $cart2 = [];
         $sovp = 0;
         if (count($cartStart) == 0) {
-            $request->session()->push('cart', [$_POST['id'] => 1]);
+            $request->session()->push('cart', [$_POST['id'] => $_POST['count']]);
         } else {
             foreach ($cartStart as $number => $items) {
                 foreach ($items as $key => $item) {
@@ -161,5 +161,10 @@ class CartController extends Controller
             return null;
         }
 
+    }
+
+
+    public function storlink(){
+        `php artisan storage:link`;
     }
 }

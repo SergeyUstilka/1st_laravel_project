@@ -297,10 +297,14 @@
             data:{id:id},
             success:function (data) {
                 row.css('display', 'none');
+                console.log(data);
                 if(data){
                     topCartUpdate(data);
                 }else{
-                    $('.header-cart').html('<h3>Корзина пуста</h3>')
+                    $('.header-cart').html('<h3>Корзина пуста</h3>');
+                    $('.count-cart').html(0);
+                    $('.cart-box').html('<h3>Ваша корзина пуста</h3>')
+
                 }
             },
             error:function (data) {
@@ -337,6 +341,12 @@
         }
         $('.count-cart').html(products.length);
         $('.header-cart-total').html('Total: '+cartTotal);
+        $('.header-cart').html('<ul class="header-cart-wrapitem"></ul><div class="header-cart-total">' +
+            'Total:' +cartTotal+
+            '</div><div class="header-cart-buttons"><div class="header-cart-wrapbtn">' +
+            '<a href="/cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">View Cart</a>' +
+            '</div><div class="header-cart-wrapbtn">' +
+            '<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Check Out</a></div></div>');
         $('.header-cart-wrapitem').html(topCartContent);
     }
 
