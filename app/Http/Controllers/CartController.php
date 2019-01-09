@@ -164,7 +164,4 @@ class CartController extends Controller
     }
 
 
-    public function storlink(){
-        `php artisan storage:link`;
-    }
 }

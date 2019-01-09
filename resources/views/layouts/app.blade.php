@@ -134,7 +134,7 @@ if (session('cart')) {
                     <span class="header-icons-noti count-cart">{{count($cart_products)}}</span>
 
                     <!-- Header cart noti -->
-                    <div class="header-cart header-dropdown">1
+                    <div class="header-cart header-dropdown">
                         @if($cart_products)
                             <?php $total = 0 ?>
                         <ul class="header-cart-wrapitem">
