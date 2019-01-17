@@ -6,6 +6,11 @@
                 <div class="card-header">
                     <strong>@if ($product->id) Редактировать @else Создать@endif </strong>товар
                 </div>
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{$error}}
+                    </div>
+                @endforeach
                 <form action="@if ($product->id) {{route('admin.product.update',compact('product'))}} @else {{route('admin.product.store')}} @endif" method="post" class="">
                     @if ($product->id) <input name="_method" value="PUT" hidden > @endif
                     @csrf

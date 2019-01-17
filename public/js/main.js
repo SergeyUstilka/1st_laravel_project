@@ -421,6 +421,29 @@
     });
 
 
+    /*[ Logout ]
+    ===========================================================*/
+    $('#logout').on('click', function (event) {
+        event.preventDefault();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url:'/logout',
+            method:"POST",
+            success:function (data) {
+                console.log(data);
+
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        })
+
+    });
+
     /*[ Show content Product detail ]
     ===========================================================*/
     $('.active-dropdown-content .js-toggle-dropdown-content').toggleClass('show-dropdown-content');

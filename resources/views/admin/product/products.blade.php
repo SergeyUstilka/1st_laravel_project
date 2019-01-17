@@ -2,6 +2,12 @@
 @section('adminContent')
     <div class="row">
         <div class="col-md-12">
+            @if ($message = Session::get('status'))
+                <div class="alert alert-success alert-block">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>{{ $message }}</strong>
+                </div>
+            @endif
             <!-- DATA TABLE -->
             <h2 class="title-5 m-b-35">Товары <a href="{{route('admin.product.create')}}" class="btn btn-primary">Добавить</a></h2>
             <div class="table-responsive table-responsive-data2">

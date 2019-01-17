@@ -1,11 +1,17 @@
 @extends('layouts.admin')
 @section('adminContent')
+    @dump($errors)
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <strong>@if ($category->id) Редактировать @else Создать@endif </strong>категорию
                 </div>
+                @foreach($errors->all() as $error)
+                    <div class="alert alert-danger">
+                        {{$error}}
+                    </div>
+                @endforeach
                 <form action="@if ($category->id) {{route('admin.category.update',compact('category'))}} @else {{route('admin.category.store')}} @endif" method="post" class="">
                     @if ($category->id) <input name="_method" value="PUT" hidden > @endif
                     @csrf

@@ -22,4 +22,14 @@ class Product extends Model
     }
     public function mainPhoto(){
     }
+
+    static function boot(){
+        parent::boot();
+        self::creating(function ($model){
+            $model->slug = str_slug($model->name);
+        });
+        self::updating(function ($model){
+            $model->slug = str_slug($model->name);
+        });
+    }
 }

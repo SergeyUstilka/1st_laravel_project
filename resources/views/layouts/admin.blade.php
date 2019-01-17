@@ -172,6 +172,12 @@
                     <li>
                         <a href="{{route('admin.product.index')}}">Продукты</a>
                     </li>
+                    <li>
+                        <a href="{{route('admin.user.index')}}">Пользователи</a>
+                    </li>
+                    <li>
+                        <a href="{{route('admin.role.index')}}">Роли</a>
+                    </li>
                 </ul>
             </nav>
         </div>

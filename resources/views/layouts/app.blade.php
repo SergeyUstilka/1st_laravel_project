@@ -1,21 +1,4 @@
-<?php
 
-use App\Models\Product;
-
-if (session('cart')) {
-    $arr = session('cart');
-    foreach ($arr as $items) {
-        foreach ($items as $key => $item) {
-            $ids[] = $key;
-            $count[$key] = $item;
-        }
-    }
-
-    $cart_products = Product::query()->whereIn('id', $ids)->get();
-} else {
-    $cart_products = null;
-}
-?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -117,6 +100,9 @@ if (session('cart')) {
                         <li>
                             <a href="/wish_list">Wish List</a>
                         </li>
+                        <li>
+                            <a href="#" id="logout">Logout</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -132,7 +118,6 @@ if (session('cart')) {
                 <div class="header-wrapicon2">
                     <img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
                     <span class="header-icons-noti count-cart">{{count($cart_products)}}</span>
-
                     <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                         @if($cart_products)
@@ -381,32 +366,7 @@ if (session('cart')) {
             <h4 class="s-text12 p-b-30">
                 Categories
             </h4>
-
-            <ul>
-                <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Men
-                    </a>
-                </li>
-
-                <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Women
-                    </a>
-                </li>
-
-                <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Dresses
-                    </a>
-                </li>
-
-                <li class="p-b-9">
-                    <a href="#" class="s-text7">
-                        Sunglasses
-                    </a>
-                </li>
-            </ul>
+            @include('partials.bottom_category_menu')
         </div>
 
         <div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">

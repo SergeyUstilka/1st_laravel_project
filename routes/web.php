@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/category/{category?}','ShopController@category')->name('category');
 Route::get('/product/{category}/{product}.html','ShopController@product')->name('product');
+Route::get('/createRole','ShopController@createRole');
 
 Route::get('/wish_list','WishlistController@wishlist')->name('wishlist');
 Route::any('/addtowishlist','WishlistController@addTowishList')->name('addtowishlist');
@@ -29,11 +30,13 @@ Route::any('/deletefromcart','CartController@deletefromcart');
 
 
 
-Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
+Route::namespace('Admin')->middleware(['auth','role:admin'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', 'IndexController@index');
     Route::resource('category','CategoryController');
     Route::resource('product','ProductController');
     Route::resource('{product}/photo', 'PhotoController');
+    Route::resource('user','UserController');
+    Route::resource('role','RoleController');
 });
 
 //Route::get('/cart', 'CartController@index');

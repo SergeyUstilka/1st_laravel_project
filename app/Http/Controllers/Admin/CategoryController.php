@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(5);
+        $categories = Category::orderBy('id','desc')->paginate(5);
         return view('admin.category.categories',compact('categories'));
     }
 
@@ -36,10 +37,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         $category = new Category($request->except('_token'));
-        $category->slug = str_slug($category->name);
         $category->save();
         return redirect(route('admin.category.index'));
     }
@@ -76,10 +76,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->all());
-        return back();
+        return redirect(route('admin.category.index'));
     }
 
     /**

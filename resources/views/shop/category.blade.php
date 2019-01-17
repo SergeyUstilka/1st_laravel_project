@@ -11,21 +11,25 @@
                         Categories
                     </h4>
 
-                    <ul class="p-b-54">
-                        @foreach($categories as $category)
-                        <li class="p-t-4">
-                            <a href="{{route('category', ['category'=> $category])}}" class="s-text13 active1">
-                                {{$category->name}}
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
+                   @include('partials.side_menu')
                 </div>
             </div>
             <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+                @if($current_category)
+                    <div class="row">
+                        <div class="description">
+                            <h2>Kатегория: <b style="color:green">{{$current_category->name}}</b></h2>
+                        @if(!isset($_GET['page']) or $_GET['page']==1)
+                            <h3>Описание</h3>
+                                <p>{{$current_category->description}}</p>
+                    @endif
+                        </div>
+                    </div>
+            @endif
 
-                <!-- Product -->
+            <!-- Product -->
                 <div class="row">
+
                     @foreach($products as $product)
                     <div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
                         <!-- Block2 -->

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use function GuzzleHttp\Psr7\str;
@@ -17,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(5);
+        $products = Product::orderBy('id','desc')->paginate(5);
         return view('admin.product.products',compact('products'));
     }
 
@@ -39,11 +40,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $product = new Product($request->except('_token'));
-        $product->slug = str_slug($product->name);
         $product->save();
+        $request->session()->flash('status','Товар добавлен');
         return redirect(route('admin.product.index'));
     }
 
@@ -77,10 +78,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         $product->update($request->all());
-        return back();
+        return redirect(route('admin.product.index'));
     }
 
     /**
