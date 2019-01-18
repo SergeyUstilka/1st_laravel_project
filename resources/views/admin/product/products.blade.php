@@ -28,7 +28,7 @@
                     <tr>
                         <td>{{$product->id}}</td>
                         <td><img src="{{asset('/storage/images/'.$product->img)}}" alt=""></td>
-                        <td>{{$product->name}}</td>
+                        <td><a href="{{route('product',['category'=>$product->category,'product'=>$product])}}" target="_blank">{{$product->name}}</a></td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->content}}</td>
                         <td>{{$product->cat_id}}</td>

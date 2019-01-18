@@ -32,7 +32,7 @@
                                                 <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
                                             </button>
 
-                                            <input class="size8 m-text18 t-center num-product" type="number" data-id="{{$product->id}}" value="{{$count[$product->id]}}">
+                                            <input class="size8 m-text18 t-center num-product" type="number" data-id="{{$product->id}}" value="{{$cart[$product->id]}}">
 
                                             <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2 cart-control-plus">
                                                 <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
@@ -40,8 +40,8 @@
                                         </div>
                                     </td>
 
-                                    <td class="column-5 product-total" >{{$product->price*$count[$product->id]}}</td>
-                            <?php $total+=$product->price*$count[$product->id]?>
+                                    <td class="column-5 product-total" >{{$product->price*$cart[$product->id]}}</td>
+                            <?php $total+=$product->price*$cart[$product->id]?>
                                     <td class="column-6">
                                         <a href="#" class="btn btn-danger delete-from-cart" data-id = '{{$product->id}}'><i class="icon_trash_alt" aria-hidden="true"></i></a>
                                     </td>

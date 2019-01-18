@@ -170,7 +170,7 @@
             }
         });
         $.ajax({
-            url:'/addtocart',
+            url:'/newAddtoCart',
             method:'POST',
             data:{id:id, count:count},
             success: function (data) {
@@ -188,17 +188,17 @@
         var nameProduct = $(this).data('name');
         var count = $(this).parent().parent().children().eq(0).children().eq(1).val();
         var id = $(this).data('id');
-        console.log(count);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url:'/addtocart',
+            url:'/newAddtoCart',
             method:"POST",
             data:{id:id,count:count},
             success:function (data) {
+                console.log(data);
                 topCartUpdate(data);
                 swal(nameProduct, "is added to cart !", "success");
             },
@@ -297,7 +297,6 @@
             data:{id:id},
             success:function (data) {
                 row.css('display', 'none');
-                console.log(data);
                 if(data){
                     topCartUpdate(data);
                 }else{
@@ -318,12 +317,11 @@
     function topCartUpdate(data){
         var products = JSON.parse(data)[0];
         var counts = JSON.parse(data)[1];
-
+        // console.log(JSON.parse(data));
         var topCartContent = '';
         var cartTotal = 0;
         for(var i=0; i<products.length; i++){
             var countId = products[i].id;
-            console.log();
             topCartContent = topCartContent +
                 '<li class="header-cart-item">' +
                 '<div class="header-cart-item-img">' +

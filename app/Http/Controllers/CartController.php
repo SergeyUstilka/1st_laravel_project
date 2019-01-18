@@ -11,157 +11,70 @@ class CartController extends Controller
 
     public function index()
     {
-        if (session('cart')) {
-            $arr = session('cart');
-            foreach ($arr as $items) {
-                foreach ($items as $key => $item) {
-                    $ids[] = $key;
-                    $count[$key] = $item;
-                }
-            }
-
-            $products = Product::query()->whereIn('id', $ids)->get();
+        $cart= session('cart');
+        if ($cart) {
+            $products = Product::query()->whereIn('id', array_keys($cart))->get();
         } else {
             $products = null;
         }
-        return view('cart.cart', compact('products', 'count'));
+        return view('cart.cart', compact('products', 'cart'));
     }
 
-    public function addtocart(Request $request)
-    {
-//        $request->session()->pull('cart');
-//        print_r(session('cart'));
-        if (session('cart') === null) {
-            $request->session()->put('cart', []);
-        }
 
-
-        // Перебираем корзину, проверяем есть ли совпадения, добавляем  товар
-        $cartStart = session('cart');
-        $cart2 = [];
-        $sovp = 0;
-        if (count($cartStart) == 0) {
-            $request->session()->push('cart', [$_POST['id'] => $_POST['count']]);
-        } else {
-            foreach ($cartStart as $number => $items) {
-                foreach ($items as $key => $item) {
-                    if ($key == $_POST['id']) {
-                        $sovp++;
-                        $cart2[$number] = 1;
-                    } else {
-                        $cart2[$number] = 0;
-                    }
-                }
-            }
-            if (!$sovp) {
-                $request->session()->push('cart', [$_POST['id'] => 1]);
-            } else {
-                $request->session()->pull('cart');
-                $request->session()->put('cart', []);
-                foreach ($cartStart as $number => $items) {
-                    foreach ($items as $key => $item) {
-                        if ($cart2[$number]) {
-                            $request->session()->push('cart', [$key => ($item + (1*$_POST['count']))]);
-                        } else {
-                            $request->session()->push('cart', [$key => $item]);
-                        }
-                    }
-                }
-            }
-        }
-
-        // Делаем выборку товаров из сесии и отправляем на фронт
-        $arr = session('cart');
-        foreach ($arr as $items) {
-            foreach ($items as $key => $item) {
-                $ids[] = $key;
-                $count[$key] = $item;
-            }
-        }
-        $products = Product::query()->whereIn('id', $ids)->get();
-        $res[]=$products;
-        $res[] = $count;
-        return json_encode($res);
-
-    }
 
 
     public function updatecart(Request $request)
     {
-        $cartStart = session('cart');
-        $cart2 = [];
-        $sovp = 0;
-        foreach ($cartStart as $number => $items) {
-            foreach ($items as $key => $item) {
-                if ($key == $_POST['id']) {
-                    $sovp++;
-                    $cart2[$number] = 1;
-                } else {
-                    $cart2[$number] = 0;
-                }
-            }
+        $cart = session('cart');
+        $count = $request->input('count');
+        $updatedProduct = $cart[$request->input('id')];
+        if(isset($updatedProduct)){
+            $cart[$request->input('id')] = $count;
         }
-        if (!$sovp) {
-            $request->session()->push('cart', [$_POST['id'] => 1]);
-        } else {
-            $request->session()->pull('cart');
-            $request->session()->put('cart', []);
-            foreach ($cartStart as $number => $items) {
-                foreach ($items as $key => $item) {
-                    if ($cart2[$number]) {
-                        $request->session()->push('cart', [$key => $_POST['count']]);
-                    } else {
-                        $request->session()->push('cart', [$key => $item]);
-                    }
-                }
-            }
-        }
+        session(['cart'=>$cart]);
+
         // Делаем выборку товаров из сесии и отправляем на фронт
         $arr = session('cart');
-        foreach ($arr as $items) {
-            foreach ($items as $key => $item) {
-                $ids[] = $key;
-                $count[$key] = $item;
-            }
-        }
-        $products = Product::query()->whereIn('id', $ids)->get();
+        $products = Product::query()->whereIn('id', array_keys($arr))->get();
         $res[]=$products;
-        $res[] = $count;
+        $res[] = $arr;
         return json_encode($res);
     }
 
     public function deletefromcart(Request $request)
     {
-        $cartStart = session('cart');
-
-        $request->session()->pull('cart');
-        $request->session()->put('cart', []);
-        foreach ($cartStart as $number => $items) {
-            foreach ($items as $key => $item) {
-                if ($key != $_POST['id']) {
-                    $request->session()->push('cart', [$key => $item]);
-                }
-            }
-        }
+        $cart = $request->session()->get('cart',[]);
+        unset($cart[$request->input('id')]);
+        session(['cart'=>$cart]);
         // Делаем выборку товаров из сесии и отправляем на фронт
-
         $arr = session('cart');
-        if($arr){
-            foreach ($arr as $items) {
-                foreach ($items as $key => $item) {
-                    $ids[] = $key;
-                    $count[$key] = $item;
-                }
-            }
-            $products = Product::query()->whereIn('id', $ids)->get();
-            $res[]=$products;
-            $res[] = $count;
-            return json_encode($res);
-        }else{
-            return null;
-        }
+        $products = Product::query()->whereIn('id', array_keys($arr))->get();
+        $res[]=$products;
+        $res[] = $arr;
+        return json_encode($res);
 
     }
 
+    public function newAddtoCart(Request $request){
+//                $request->session()->pull('cart');
+        $cart = $request->session()->get('cart',[]);
+        $prod_id = $request->input('id');
+        $count = $request->input('count');
+        if(isset($cart[$prod_id])){
+            $cart[$prod_id]+=intval($count);
+        }else{
+           $cart[$prod_id]=intval($count);
+        }
+
+        session(['cart'=>$cart]);
+
+        // Делаем выборку товаров из сесии и отправляем на фронт
+        $arr = session('cart');
+        $products = Product::query()->whereIn('id', array_keys($arr))->get();
+        $res[]=$products;
+        $res[] = $arr;
+        return json_encode($res);
+//        print_r($arr);
+    }
 
 }

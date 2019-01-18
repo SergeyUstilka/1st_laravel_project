@@ -1,5 +1,10 @@
+{{--@foreach($roles as $role)--}}
+    {{--@dump($role->id)--}}
+{{--@endforeach--}}
+{{--@dd($user->roles->first()->id)--}}
 @extends('layouts.admin')
 @section('adminContent')
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
@@ -31,7 +36,7 @@
                             <label for="nf-cat" class=" form-control-label">Роль</label>
                             <select name="role_id" id="">
                                 @foreach($roles as $role)
-                                    @if ($user->roles->first()->id == $role->id)
+                                    @if ($user->id and $user->roles->first()->id == $role->id)
                                 <option value="{{$role->id}}" selected>{{$role->name}} - {{$role->id}}</option>
                                     @else
                                 <option value="{{$role->id}}">{{$role->name}} - {{$role->id}}</option>

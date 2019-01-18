@@ -1,50 +1,50 @@
 
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 
-    <!-- CSRF Token -->
+<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{{asset('images/icons/favicon.png')}}"/>
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/themify/themify-icons.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('fonts/elegant-font/html-css/style.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/animate/animate.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/css-hamburgers/hamburgers.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/animsition/css/animsition.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/select2/select2.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/daterangepicker/daterangepicker.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/slick/slick.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/lightbox2/css/lightbox.min.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
-    <!--===============================================================================================-->
+<!--===============================================================================================-->
 </head>
 <body class="animsition">
 
 <!-- Header -->
 <header class="header1">
-    <!-- Header desktop -->
+<!-- Header desktop -->
     <div class="container-menu-header">
         <div class="topbar">
             <div class="topbar-social">
@@ -56,12 +56,12 @@
             </div>
 
             <span class="topbar-child1">
-					Free shipping for standard order over $100
+                Free shipping for standard order over $100
 				</span>
 
             <div class="topbar-child2">
-					<span class="topbar-email">
-						fashe@example.com
+                <span class="topbar-email">
+                        fashe@example.com
 					</span>
 
                 <div class="topbar-language rs1-select2">
@@ -74,12 +74,12 @@
         </div>
 
         <div class="wrap_header">
-            <!-- Logo -->
+        <!-- Logo -->
             <a href="index.html" class="logo">
                 <img src="{{asset('images/icons/logo.png')}}" alt="IMG-LOGO">
             </a>
 
-            <!-- Menu -->
+        <!-- Menu -->
             <div class="wrap_menu">
                 <nav class="menu">
                     <ul class="main_menu">
@@ -107,7 +107,7 @@
                 </nav>
             </div>
 
-            <!-- Header Icon -->
+        <!-- Header Icon -->
             <div class="header-icons">
                 <a href="#" class="header-wrapicon1 dis-block">
                     <img src="{{asset('/images/icons/icon-header-01.png')}}" class="header-icon1" alt="ICON">
@@ -118,13 +118,13 @@
                 <div class="header-wrapicon2">
                     <img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
                     <span class="header-icons-noti count-cart">{{count($cart_products)}}</span>
-                    <!-- Header cart noti -->
+                <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
-                        @if($cart_products)
-                            <?php $total = 0 ?>
-                        <ul class="header-cart-wrapitem">
+                    @if($cart_products)
+                        <?php $total = 0 ?>
+                                <ul class="header-cart-wrapitem">
                                 @foreach ($cart_products as $product)
-                                <?php $total+=$product->price*$count[$product->id]?>
+                                <?php $total+=$product->price*$cart[$product->id]?>
                             <li class="header-cart-item">
                                 <div class="header-cart-item-img">
                                     <img src="{{asset('/storage/images/'.$product->img)}}" alt="IMG">
@@ -136,7 +136,7 @@
                                     </a>
 
                                     <span class="header-cart-item-info">
-                                    {{$count[$product->id]}} x {{$product->price}}
+                                    {{$cart[$product->id]}} x {{$product->price}}
 										</span>
                                 </div>
                             </li>

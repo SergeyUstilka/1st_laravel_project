@@ -23,10 +23,16 @@ Route::get('/wish_list','WishlistController@wishlist')->name('wishlist');
 Route::any('/addtowishlist','WishlistController@addTowishList')->name('addtowishlist');
 Route::get('/delete_from_wish_list', 'WishlistController@deletewishlist')->name('deletefromwishlist');
 
+Route::get('/user','UserController@index');
 Route::get('/cart','CartController@index')->name('cart');
 Route::any('/addtocart','CartController@addtocart')->name('addtocart');
 Route::any('/updatecart','CartController@updatecart');
 Route::any('/deletefromcart','CartController@deletefromcart');
+
+Route::any('/newAddtoCart','CartController@newAddtoCart');
+
+
+Route::get('/checkout','OrderController@index')->name('checkout');
 
 
 

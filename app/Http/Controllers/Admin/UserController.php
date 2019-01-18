@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\UserRequest;
 use App\Models\Entrust\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $role_id = $request->role_id;
         $role = Role::query()->where('id', $role_id)->first();
@@ -80,7 +81,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         if (Hash::needsRehash($request->password))
         {
@@ -109,6 +110,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return [];
     }
 }

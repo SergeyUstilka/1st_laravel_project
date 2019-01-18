@@ -28,7 +28,7 @@
                         <tr class="tr-shadow">
 
                             <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
+                            <td><a href="{{route('category',['category'=>$category])}}" target="_blank">{{$category->name}}</a></td>
                             <td>{{$category->description}}</td>
                             <td>{{$category->slug}}</td>
                             <td>{{$category->created_at}}</td>
