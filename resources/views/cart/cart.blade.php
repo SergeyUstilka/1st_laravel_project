@@ -24,7 +24,7 @@
                                             <img src="{{asset('/storage/images/'.$product->img)}}" alt="IMG-PRODUCT">
                                         </div>
                                     </td>
-                                    <td class="column-4"><a href="{{route('product',['category'=>\App\Models\Category::query()->where('id',$product->cat_id)->get()[0]->slug, 'product'=>$product->slug])}}">{{$product->name}}</a></td>
+                                    <td class="column-4"><a href="{{route('product',['category'=>\App\Models\Category::query()->where('id',$product->cat_id)->get()[0]->slug, 'product'=>$product->slug])}}" target="_blank">{{$product->name}}</a></td>
                                     <td class="column-3">{{$product->price}}</td>
                                     <td class="column-3">
                                         <div class="flex-w bo5 of-hidden w-size17">
@@ -60,9 +60,9 @@
 
                     <div class="size15 trans-0-4">
                         <!-- Button -->
-                        <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+                        <a href="/checkout" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
                             Proceed to Checkout
-                        </button>
+                        </a>
                     </div>
                 </div>
             @else <h2>Ваша корзина пуста</h2>

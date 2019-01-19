@@ -19,6 +19,4 @@ class Role extends EntrustRole
     {
         return $this->belongsToMany(User::class,'role_user','role_id');
     }
-
-
 }

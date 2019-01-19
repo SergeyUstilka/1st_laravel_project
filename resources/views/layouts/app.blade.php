@@ -117,7 +117,7 @@
 
                 <div class="header-wrapicon2">
                     <img src="{{asset('images/icons/icon-header-02.png')}}" class="header-icon1 js-show-header-dropdown" alt="ICON">
-                    <span class="header-icons-noti count-cart">{{count($cart_products)}}</span>
+                    <span class="header-icons-noti count-cart">{{array_sum($cart)}}</span>
                 <!-- Header cart noti -->
                     <div class="header-cart header-dropdown">
                     @if($cart_products)
@@ -158,7 +158,7 @@
 
                             <div class="header-cart-wrapbtn">
                                 <!-- Button -->
-                                <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+                                <a href="/checkout" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
                                     Check Out
                                 </a>
                             </div>

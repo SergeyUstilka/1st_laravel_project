@@ -198,7 +198,6 @@
             method:"POST",
             data:{id:id,count:count},
             success:function (data) {
-                console.log(data);
                 topCartUpdate(data);
                 swal(nameProduct, "is added to cart !", "success");
             },
@@ -303,16 +302,13 @@
                     $('.header-cart').html('<h3>Корзина пуста</h3>');
                     $('.count-cart').html(0);
                     $('.cart-box').html('<h3>Ваша корзина пуста</h3>')
-
                 }
             },
             error:function (data) {
                 console.log(data);
             }
         });
-
-
-    })
+    });
 
     function topCartUpdate(data){
         var products = JSON.parse(data)[0];
@@ -320,6 +316,8 @@
         // console.log(JSON.parse(data));
         var topCartContent = '';
         var cartTotal = 0;
+        var cartCount= 0;
+
         for(var i=0; i<products.length; i++){
             var countId = products[i].id;
             topCartContent = topCartContent +
@@ -331,20 +329,22 @@
                 '<a href="#" class="header-cart-item-name">'+products[i].name+'</a>' +
                 '<span class="header-cart-item-info">'+ counts[countId]+' x '+ products[i].price +'</span>' +
                 '</div></li>';
+            cartCount=parseInt(cartCount + counts[countId]);
             cartTotal+=counts[countId]*products[i].price;
 
         }
+        console.log(cartCount);
         if($('#cardCheck').length >0){
             $('#cardCheck').html('CART TOTALS: '+cartTotal);
         }
-        $('.count-cart').html(products.length);
+        $('.count-cart').html(cartCount);
         $('.header-cart-total').html('Total: '+cartTotal);
         $('.header-cart').html('<ul class="header-cart-wrapitem"></ul><div class="header-cart-total">' +
             'Total:' +cartTotal+
             '</div><div class="header-cart-buttons"><div class="header-cart-wrapbtn">' +
             '<a href="/cart" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">View Cart</a>' +
             '</div><div class="header-cart-wrapbtn">' +
-            '<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Check Out</a></div></div>');
+            '<a href="/checkout" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">Check Out</a></div></div>');
         $('.header-cart-wrapitem').html(topCartContent);
     }
 
