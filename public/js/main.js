@@ -379,6 +379,44 @@
         });
     });
 
+
+
+
+    /*[ Clever Search in catalog ]
+===========================================================*/
+ $('#search_product').keyup(function (event) {
+     event.preventDefault();
+     var data = $(this).val();
+     $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+     });
+     $.ajax({
+         url:'/clever_search',
+         method:'POST',
+         data:{patern:data},
+         success:function (data) {
+
+             if(data.length){
+                 var results = JSON.parse(data);
+                 if(results.length>0){
+                     var list= "<ul>";
+                     for(var i=0; i<results.length; i++){
+                         list+='<li>'+results[i]+'</li>';
+                     }
+                     list+='</ul>'
+                     $('#clever_result').html(list);
+                 }else{
+                     $('#clever_result').style('display','none');
+                     console.log('хуйня');
+                 }
+
+             }
+         }
+         });
+ });
+
     /*[ Delete from wishlist ]
 ===========================================================*/
 

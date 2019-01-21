@@ -35,7 +35,7 @@ Route::any('/newAddtoCart','CartController@newAddtoCart');
 Route::resource('/checkout','OrderController');
 
 Route::get('/flash_messages',function (){return view('layouts.flash_messages');})->name('flash_messages');
-
+Route::any('/clever_search','SearchController@index');
 
 Route::namespace('Admin')->middleware(['auth','role:admin'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', 'IndexController@index');
