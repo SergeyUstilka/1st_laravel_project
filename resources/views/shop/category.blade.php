@@ -15,6 +15,12 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
+                @if ($message = Session::get('status'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 @if($current_category)
                     <div class="row">
                         <div class="description">
@@ -25,7 +31,7 @@
                     @endif
                         </div>
                     </div>
-            @endif
+                @endif
 
             <!-- Product -->
                 <div class="row">

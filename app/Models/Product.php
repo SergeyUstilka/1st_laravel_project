@@ -23,6 +23,10 @@ class Product extends Model
     public function mainPhoto(){
     }
 
+    public function orders(){
+        return $this->belongsToMany(Order::class,'order_products','product_id');
+    }
+
     static function boot(){
         parent::boot();
         self::creating(function ($model){

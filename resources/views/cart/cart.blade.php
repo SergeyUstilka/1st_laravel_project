@@ -64,9 +64,9 @@
                             Proceed to Checkout
                         </a>
                     </div>
+                    @else <h2>Ваша корзина пуста</h2>
+                    @endif
                 </div>
-            @else <h2>Ваша корзина пуста</h2>
-            @endif
         </div>
     </section>
 

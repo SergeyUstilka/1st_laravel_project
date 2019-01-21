@@ -32,8 +32,9 @@ Route::any('/deletefromcart','CartController@deletefromcart');
 Route::any('/newAddtoCart','CartController@newAddtoCart');
 
 
-Route::get('/checkout','OrderController@index')->name('checkout');
+Route::resource('/checkout','OrderController');
 
+Route::get('/flash_messages',function (){return view('layouts.flash_messages');})->name('flash_messages');
 
 
 Route::namespace('Admin')->middleware(['auth','role:admin'])->prefix('admin')->name('admin.')->group(function(){
@@ -43,6 +44,8 @@ Route::namespace('Admin')->middleware(['auth','role:admin'])->prefix('admin')->n
     Route::resource('{product}/photo', 'PhotoController');
     Route::resource('user','UserController');
     Route::resource('role','RoleController');
+    Route::resource('order','OrderController');
+    Route::resource('order_status','OrderStatusController');
 });
 
 //Route::get('/cart', 'CartController@index');

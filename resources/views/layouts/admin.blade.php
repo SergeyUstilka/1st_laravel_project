@@ -18,14 +18,16 @@
     <link href="{{asset('adminfront/css/font-face.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('adminfront/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('adminfront/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('adminfront/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet"
+          media="all">
 
     <!-- Bootstrap CSS-->
     <link href="{{asset('adminfront/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
 
     <!-- Vendor CSS-->
     <link href="{{asset('adminfront/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('adminfront/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+    <link href="{{asset('adminfront/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}"
+          rel="stylesheet" media="all">
     <link href="{{asset('adminfront/vendor/wow/animate.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('adminfront/vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
     <link href="{{asset('adminfront/vendor/slick/slick.css')}}" rel="stylesheet" media="all">
@@ -45,7 +47,7 @@
             <div class="container-fluid">
                 <div class="header-mobile-inner">
                     <a class="logo" href="index.html">
-                        <img src="{{asset('adminfront/images/icon/logo.png')}}" alt="Cooladminfront" />
+                        <img src="{{asset('adminfront/images/icon/logo.png')}}" alt="Cooladminfront"/>
                     </a>
                     <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
@@ -160,23 +162,36 @@
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
             <a href="#">
-                <img src="{{asset('adminfront/images/icon/logo.png')}}" alt="Cool adminfront" />
+                <img src="{{asset('adminfront/images/icon/logo.png')}}" alt="Cool adminfront"/>
             </a>
         </div>
         <div class="menu-sidebar__content js-scrollbar1">
             <nav class="navbar-sidebar">
                 <ul class="list-unstyled navbar__list">
                     <li>
-                        <a href="{{route('admin.category.index')}}">Категории</a>
-                    </li>
-                    <li>
                         <a href="{{route('admin.product.index')}}">Продукты</a>
+                        <ul>
+                            <li>
+                                <a href="{{route('admin.category.index')}}">Категории</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="{{route('admin.user.index')}}">Пользователи</a>
+                        <ul>
+                            <li>
+                                <a href="{{route('admin.role.index')}}">Роли</a>
+                            </li>
+                        </ul>
                     </li>
+
                     <li>
-                        <a href="{{route('admin.role.index')}}">Роли</a>
+                        <a href="{{route('admin.order.index')}}">Заказы</a>
+                        <ul>
+                            <li>
+                                <a href="{{route('admin.order_status.index')}}">Статусы заказов</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -192,7 +207,8 @@
                 <div class="container-fluid">
                     <div class="header-wrap">
                         <form class="form-header" action="" method="POST">
-                            <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                            <input class="au-input au-input--xl" type="text" name="search"
+                                   placeholder="Search for datas &amp; reports..."/>
                             <button class="au-btn--submit" type="submit">
                                 <i class="zmdi zmdi-search"></i>
                             </button>
@@ -208,7 +224,8 @@
                                         </div>
                                         <div class="mess__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('adminfront/images/icon/avatar-06.jpg')}}" alt="Michelle Moreno" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-06.jpg')}}"
+                                                     alt="Michelle Moreno"/>
                                             </div>
                                             <div class="content">
                                                 <h6>Michelle Moreno</h6>
@@ -218,7 +235,8 @@
                                         </div>
                                         <div class="mess__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('adminfront/images/icon/avatar-04.jpg')}}" alt="Diane Myers" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-04.jpg')}}"
+                                                     alt="Diane Myers"/>
                                             </div>
                                             <div class="content">
                                                 <h6>Diane Myers</h6>
@@ -240,7 +258,8 @@
                                         </div>
                                         <div class="email__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('adminfront/images/icon/avatar-06.jpg')}}" alt="Cynthia Harvey" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-06.jpg')}}"
+                                                     alt="Cynthia Harvey"/>
                                             </div>
                                             <div class="content">
                                                 <p>Meeting about new dashboard...</p>
@@ -249,7 +268,8 @@
                                         </div>
                                         <div class="email__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('adminfront/images/icon/avatar-05.jpg')}}" alt="Cynthia Harvey" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-05.jpg')}}"
+                                                     alt="Cynthia Harvey"/>
                                             </div>
                                             <div class="content">
                                                 <p>Meeting about new dashboard...</p>
@@ -258,7 +278,8 @@
                                         </div>
                                         <div class="email__item">
                                             <div class="image img-cir img-40">
-                                                <img src="{{asset('adminfront/images/icon/avatar-04.jpg')}}" alt="Cynthia Harvey" />
+                                                <img src="{{asset('adminfront/images/icon/avatar-04.jpg')}}"
+                                                     alt="Cynthia Harvey"/>
                                             </div>
                                             <div class="content">
                                                 <p>Meeting about new dashboard...</p>
@@ -313,7 +334,7 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <img src="{{asset('adminfront/images/icon/avatar-01.jpg')}}" alt="John Doe" />
+                                        <img src="{{asset('adminfront/images/icon/avatar-01.jpg')}}" alt="John Doe"/>
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#">john doe</a>
@@ -322,7 +343,8 @@
                                         <div class="info clearfix">
                                             <div class="image">
                                                 <a href="#">
-                                                    <img src="{{asset('adminfront/images/icon/avatar-01.jpg')}}" alt="John Doe" />
+                                                    <img src="{{asset('adminfront/images/icon/avatar-01.jpg')}}"
+                                                         alt="John Doe"/>
                                                 </a>
                                             </div>
                                             <div class="content">
