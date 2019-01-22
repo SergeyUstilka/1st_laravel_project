@@ -397,25 +397,84 @@
          method:'POST',
          data:{patern:data},
          success:function (data) {
+             var results = JSON.parse(data);
+            if(results.length >0){
+                $('#clever_result').css('display','block');
+                var list= "<ul>";
+                for(var i=0; i<results.length; i++){
+                    list+='<li>'+results[i]+'</li>';
+                }
+                list+='</ul>'
+                $('#clever_result').html(list);
 
-             if(data.length){
-                 var results = JSON.parse(data);
-                 if(results.length>0){
-                     var list= "<ul>";
-                     for(var i=0; i<results.length; i++){
-                         list+='<li>'+results[i]+'</li>';
-                     }
-                     list+='</ul>'
-                     $('#clever_result').html(list);
-                 }else{
-                     $('#clever_result').style('display','none');
-                     console.log('хуйня');
-                 }
+                $('#clever_result ul li').click(function () {
+                    var product_name = $(this).html();
+                    $('.search-product input').val(product_name);
+                });
+            }else{
+                $('#clever_result').css('display','none');
+            }
 
-             }
          }
          });
  });
+
+ $('#catalog_search_button').click(function (event) {
+     event.preventDefault();
+     var data = $(this).parent().children().eq(0).val();
+     $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+     });
+     $.ajax({
+         url:'/search',
+         method:'POST',
+         data:{data:data},
+         success:function (data) {
+             var products = JSON.parse(data)[0];
+             var categories = JSON.parse(data)[1];
+                 updateCatalogFeed(products, categories)
+         },
+         error:function (data) {
+             console.log(data);
+         }
+     });
+ });
+ function updateCatalogFeed(data, categories){
+     var catalog_feed =  $('#sg_catalog_products');
+     if(data.length >0){
+         var dom = '<div class="row">';
+         for(var i=0; i< data.length; i++){
+             for(var j=0; j<categories.length; j++){
+                 if(categories[j].id== data[i].cat_id){
+                     var category=categories[j].name;
+
+                 }
+             }
+            dom+='<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">' +
+                '       <div class="block2">' +
+                '           <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">' +
+                '               <img src="/storage/images/'+ data[i].img+'" alt="IMG-PRODUCT">' +
+                '               <div class="block2-overlay trans-0-4">' +
+                '                   <a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4" data-url="/wish_list" data-id="'+ data[i].id+'">' +
+                '                       <i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i><i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>' +
+                '                   </a>' +
+                '                   <div class="block2-btn-addcart w-size1 trans-0-4" data-id="'+ data[i].id+'">' +
+                '                       <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">Add to Cart</button>' +
+                '                   </div>' +
+                '               </div></div>' +
+                    '           <div class="block2-txt p-t-20">' +
+                    '               <a href="http://lara.loc/product/'+category+'/'+data[i].slug+'.html" class="block2-name dis-block s-text3 p-b-5">'+data[i].name+'</a>' +
+                    '               <span class="block2-price m-text6 p-r-5">BYN'+ data[i].price+'</span>' +
+                    '           </div>' +
+                '       </div>' +
+                '</div>';
+         }
+         dom+='</div>';
+         catalog_feed.html(dom);
+     }
+ }
 
     /*[ Delete from wishlist ]
 ===========================================================*/
